@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<link rel="import" href="./../my-redux-store.html">
+<dom-module id="redux-test-app">
+  <template>
+    <style>
+       :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class ReduxTestApp extends MyApp.ReduxMixin(Polymer.Element) {
+      static get is() { return 'redux-test-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'redux-test-app'
+          },
+          posts: {
+            type: Array,
+            statePath: MyApp.select.posts
+          }
+        }
+      }
+    }
+
+    window.customElements.define(ReduxTestApp.is, ReduxTestApp);
+  </script>
+</dom-module>

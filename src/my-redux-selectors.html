@@ -1,0 +1,21 @@
+<script src="../node_modules/reselect/dist/reselect.js"></script>
+
+<script>
+(function() {
+
+const getSelectedReddit = state => state.selectedReddit;
+const getPostsByReddit = state => state.postsByReddit;
+
+const posts = Reselect.createSelector(
+  [getSelectedReddit, getPostsByReddit],
+  (selectedReddit, postsByReddit) => {
+    return postsByReddit[selectedReddit].items;
+  }
+);
+
+MyApp.select = {
+  posts,
+}
+
+}());
+</script>
